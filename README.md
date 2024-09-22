@@ -22,11 +22,11 @@ CLAHE stands for Contrast Limited Adaptive Histogram Equalization. It is a metho
 
 - Step 2: Apply Contrast Limited Adaptive Histogram Equalization (CLAHE) on the L dimension.
 
-![clahe_l_channel](images\clahe_l_channel.png)
+![clahe_l_channel](https://github.com/maithil22/leaf_disease_detection/blob/main/images/clahe_l_channel.png)
 
 - Step 3: Reconstruct a better image by merging the LAB spectrum again, now with the new L layer.
 
-![reconstruct_leaf](images\reconstruct_leaf.png)
+![reconstruct_leaf](https://github.com/maithil22/leaf_disease_detection/blob/main/images/reconstruct_leaf.png)
 
 ## Dataset
 We have used the augmented version of [Plant Village](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset) dataset comprising of 87.9k images. 
@@ -34,6 +34,6 @@ This dataset consists of about 87K rgb images of healthy and diseased crop leave
 
 ## Model Summary
  The model is custom trained CNN with the following topology:
- ![model_summary](images\model_summary.png)
+ ![model_summary](https://github.com/maithil22/leaf_disease_detection/blob/main/images/model_summary.png)
 
 ## Results
