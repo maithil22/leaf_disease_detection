@@ -18,7 +18,7 @@ CLAHE stands for Contrast Limited Adaptive Histogram Equalization. It is a metho
 
 - Step 1: Conversion of RGB image to LAB color space
 
-![lab_breakdown](images\lab_breakdown.png)
+![lab_breakdown](https://github.com/maithil22/leaf_disease_detection/blob/main/images/lab_breakdown.png)
 
 - Step 2: Apply Contrast Limited Adaptive Histogram Equalization (CLAHE) on the L dimension.
 
