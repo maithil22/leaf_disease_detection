@@ -37,3 +37,11 @@ This dataset consists of about 87K rgb images of healthy and diseased crop leave
  ![model_summary](https://github.com/maithil22/leaf_disease_detection/blob/main/images/model_summary.png)
 
 ## Results
+After training the mode for 17,000 steps with each approach. We found minor improvements in accuracy in model by CLAHE, followed by segmented images over raw data.
+
+![loss_chart](images\loss_chart.png)
+
+Final accuracy for each model
+- Raw: 96.75% (Validation accuracy: 94.91%)
+- Segmented: 96.94% (Validation accuracy: 95.23%)
+- Clahe: 97.11% (Validation accuracy: 96.83%)

@@ -55,14 +55,14 @@ def instantiate_model():
     
     return model
 
-def load_model(mechanism):
+def load_pretained_model(mechanism):
     match mechanism:
         case "raw":
-            path = ""
+            path = "saved_models/raw_model.h5"
         case "segmented":
-            path = ""
+            path = "saved_models/segmented_model.keras"
         case "clahe":
-            path = ""
+            path = "saved_models/clahe_model.keras"
     model = load_model(path)
     return model
 
@@ -85,5 +85,27 @@ def segment_image(image):
     result = cv2.bitwise_and(image, image,mask=mask)
     return result
 
-def apply_clahe():
-    pass
+def apply_clahe(image):
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    # Convert image to LAB, apply CLAHE on L channel, and segment using mask in HSV
+    # Step 1: Read the image in RGB format
+    if image is not None:
+
+        # Step 2: Convert the image from RGB to LAB spectrum
+        lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+
+        # Step 3: Split LAB image into L, A, B channels
+        l_channel, a_channel, b_channel = cv2.split(lab_image)
+
+        # Step 4: Apply CLAHE on the L (luminance) channel
+        clahe_l = clahe.apply(l_channel)
+
+        # Step 5: Merge the enhanced L channel back with the original A and B channels
+        lab_clahe_image = cv2.merge((clahe_l, a_channel, b_channel))
+
+        # Step 6: Convert the LAB image back to RGB
+        enhanced_rgb_image = cv2.cvtColor(lab_clahe_image, cv2.COLOR_LAB2RGB)
+
+        return enhanced_rgb_image
+    else:
+        raise Exception("Image path incorrect")
