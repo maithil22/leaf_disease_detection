@@ -36,10 +36,22 @@ This dataset consists of about 87K rgb images of healthy and diseased crop leave
  The model is custom trained CNN with the following topology:
  ![model_summary](https://github.com/maithil22/leaf_disease_detection/blob/main/images/model_summary.png)
 
+## Run the model
+```
+## Run the pre-tranined raw data model
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\raw_model.h5
+
+## Run the pre-tranined segmented data model
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\segmented_model.keras
+
+## Run the pre-tranined CLAHE + segmented data model
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\clahe_model.keras
+```
+
 ## Results
 After training the mode for 17,000 steps with each approach. We found minor improvements in accuracy in model by CLAHE, followed by segmented images over raw data.
 
-![loss_chart](images\loss_chart.png)
+![loss_chart](https://github.com/maithil22/leaf_disease_detection/blob/main/images/loss_chart.png)
 
 Final accuracy for each model
 - Raw: 96.75% (Validation accuracy: 94.91%)
