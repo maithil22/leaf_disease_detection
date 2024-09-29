@@ -54,6 +54,6 @@ After training the mode for 17,000 steps with each approach. We found minor impr
 ![loss_chart](https://github.com/maithil22/leaf_disease_detection/blob/main/images/loss_chart.png)
 
 Final accuracy for each model
-- Raw: 96.75% (Validation accuracy: 94.91%)
+- Raw: 96.10% (Validation accuracy: 94.91%)
 - Segmented: 96.94% (Validation accuracy: 95.23%)
-- Clahe: 97.11% (Validation accuracy: 96.83%)
+- Clahe: 97.28% (Validation accuracy: 96.83%)
