@@ -1,9 +1,11 @@
 # Plant Leaf Disease detection using Machine Learning
 
 This project uses various approaches for classifying plant diseases based on leaf images. A custom model is trained from scratch for 3 approaches:
--  Raw image data
+- Raw image data
 - Segmented image data
 - Segmented image data with CLAHE
+
+As benchmark, we have also compared our custom model with AlexNet.
 
 ## Approaches
 
@@ -46,16 +48,29 @@ $ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\segment
 
 ## Run the pre-tranined CLAHE + segmented data model
 $ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\clahe_model.keras
+
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg saved_models\alexnet.keras
 ```
 
 ## Results
 After training the mode for 17,000 steps with each approach. We found minor improvements in accuracy in model by CLAHE, followed by segmented images over raw data.
 
+### Loss charts for custom model
 ![loss_chart](https://github.com/maithil22/leaf_disease_detection/blob/main/images/loss_chart.png)
 
+### Accuracy charts for custom model
 ![accuracy_chart](https://github.com/maithil22/leaf_disease_detection/blob/main/images/accuracy_chart.png)
+
+### Loss charts for AlexNet with CLAHE
+![loss_chart_alexnet](https://github.com/maithil22/leaf_disease_detection/blob/main/images/loss_chart_alexnet.png)
+
+### Accuracy charts for AlexNet with CLAHE
+![accuracy_chart_alexnet](https://github.com/maithil22/leaf_disease_detection/blob/main/images/accuracy_chart_alexnet.png)
+
 
 Final accuracy for each model
 - Raw: 96.10% (Validation accuracy: 94.91%)
 - Segmented: 96.94% (Validation accuracy: 95.23%)
 - Clahe: 97.28% (Validation accuracy: 96.83%)
+
+AlexNet model with Clahe: 98.47%
