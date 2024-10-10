@@ -49,6 +49,7 @@ $ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model
 ## Run the pre-tranined CLAHE + segmented data model
 $ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name clahe
 
+## Run the pre-tranined Alexnet CLAHE + segmented data model
 $ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name alexnet_clahe
 ```
 
