@@ -1,4 +1,8 @@
 import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers.schedules import ExponentialDecay
 from tensorflow.keras import layers, models
 from tensorflow.keras.models import load_model
 import numpy as np
@@ -55,6 +59,77 @@ def instantiate_model():
     
     return model
 
+def instantiate_alexnet():
+    model = Sequential()
+
+    # Convolution Step 1 (Updated input shape to (128, 128, 3))
+    model.add(Convolution2D(96, 11, strides=(4, 4), padding='same', input_shape=(128, 128, 3), activation='relu'))
+
+    # Max Pooling Step 1
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='valid'))
+    model.add(BatchNormalization())
+
+    # Convolution Step 2
+    model.add(Convolution2D(256, 11, strides=(1, 1), padding='same', activation='relu'))
+
+    # Max Pooling Step 2
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='valid'))
+    model.add(BatchNormalization())
+
+    # Convolution Step 3
+    model.add(Convolution2D(384, 3, strides=(1, 1), padding='same', activation='relu'))
+    model.add(BatchNormalization())
+
+    # Convolution Step 4
+    model.add(Convolution2D(384, 3, strides=(1, 1), padding='same', activation='relu'))
+    model.add(BatchNormalization())
+
+    # Convolution Step 5
+    model.add(Convolution2D(256, 3, strides=(1,1), padding='same', activation='relu'))
+
+    # Max Pooling Step 3
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='valid'))
+    model.add(BatchNormalization())
+
+    # Flattening Step
+    model.add(Flatten())
+
+    # Full Connection Step
+    model.add(Dense(units=4096, activation='relu'))
+    model.add(Dropout(0.4))
+    model.add(BatchNormalization())
+
+    model.add(Dense(units=4096, activation='relu'))
+    model.add(Dropout(0.4))
+    model.add(BatchNormalization())
+
+    model.add(Dense(units=1000, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(BatchNormalization())
+
+    model.add(Dense(units=38, activation='softmax'))
+
+    # Define an exponential decay learning rate schedule
+    initial_learning_rate = 0.001
+    lr_schedule = ExponentialDecay(
+        initial_learning_rate,
+        decay_steps=100000,  # You can adjust this
+        decay_rate=0.96)
+
+    # Using SGD optimizer with learning rate schedule and momentum
+    optimizer = SGD(learning_rate=lr_schedule, momentum=0.9)
+
+    # Compiling the model
+    model.compile(optimizer=optimizer,
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
+
+    for i, layer in enumerate(model.layers[:20]):
+        print(i, layer.name)
+        layer.trainable = False
+    
+    return model
+
 def load_pretained_model(mechanism):
     match mechanism:
         case "raw":
@@ -63,6 +138,8 @@ def load_pretained_model(mechanism):
             path = "saved_models/segmented_model.keras"
         case "clahe":
             path = "saved_models/clahe_model.keras"
+        case "alexnet_clahe":
+            path = "saved_models/alexnet.h5"
     model = load_model(path)
     return model
 

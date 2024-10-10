@@ -24,6 +24,9 @@ def preprocess_image(image_path, model_name):
         case "clahe":
             clahe_segmented_image = apply_clahe(segment_image(image))
             return clahe_segmented_image
+        case "alexnet_clahe":
+            clahe_segmented_image = apply_clahe(segment_image(image))
+            return clahe_segmented_image
 
 # Main script
 def main(image_path, model_name):
@@ -46,7 +49,7 @@ def main(image_path, model_name):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Plant Disease Prediction using Pretrained Models")
     parser.add_argument("image_path", type=str, help="Path to the plant leaf image")
-    parser.add_argument("model_name", type=str, choices=["raw", "segmented", "clahe"],
+    parser.add_argument("model_name", type=str, choices=["raw", "segmented", "clahe", "alexnet_clahe"],
                         help="Approach of the pretrained model file to use")
     
     args = parser.parse_args()
