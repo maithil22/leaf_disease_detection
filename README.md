@@ -74,4 +74,4 @@ Final accuracy for each model
 - Segmented: 96.94% (Validation accuracy: 95.23%)
 - Clahe: 97.28% (Validation accuracy: 96.83%)
 
-AlexNet model with Clahe: 98.47%
+AlexNet model with Clahe: 98.47% (Validation accuracy: 97.86%)
