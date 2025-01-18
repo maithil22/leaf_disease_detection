@@ -1,3 +1,4 @@
+import os
 import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
@@ -133,13 +134,13 @@ def instantiate_alexnet():
 def load_pretained_model(mechanism):
     match mechanism:
         case "raw":
-            path = "saved_models/raw_model.h5"
+            path = os.getcwd() + "/leaf_disease_detection/saved_models/raw_model.h5"
         case "segmented":
-            path = "saved_models/segmented_model.keras"
+            path = os.getcwd() + "/leaf_disease_detection/saved_models/segmented_model.keras"
         case "clahe":
-            path = "saved_models/clahe_model.keras"
+            path = os.getcwd() + "/leaf_disease_detection/saved_models/clahe_model.keras"
         case "alexnet_clahe":
-            path = "saved_models/alexnet.h5"
+            path = os.getcwd() + "/leaf_disease_detection/saved_models/alexnet.h5"
     model = load_model(path)
     return model
 

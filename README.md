@@ -41,16 +41,16 @@ This dataset consists of about 87K rgb images of healthy and diseased crop leave
 ## Run the model
 ```
 ## Run the pre-tranined raw data model
-$ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name raw
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg raw
 
 ## Run the pre-tranined segmented data model
-$ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name segmented
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg segmented
 
 ## Run the pre-tranined CLAHE + segmented data model
-$ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name clahe
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg clahe
 
 ## Run the pre-tranined Alexnet CLAHE + segmented data model
-$ python plant_disease_evaluator.py --image_path /path/to/leaf_image.jpg --model_name alexnet_clahe
+$ python plant_disease_evaluator.py /path/to/leaf_image.jpg alexnet_clahe
 ```
 
 ## Results

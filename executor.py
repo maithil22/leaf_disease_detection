@@ -4,10 +4,12 @@ import numpy as np
 import cv2
 
 from utils import apply_clahe, load_pretained_model, segment_image
+import tensorflow as tf
 
 
 # Define function to predict disease
 def predict_disease(model, preprocessed_image):
+    preprocessed_image = tf.expand_dims(preprocessed_image, axis=0) 
     predictions = model.predict(preprocessed_image)
     predicted_class = np.argmax(predictions, axis=1)[0]
     return predicted_class
